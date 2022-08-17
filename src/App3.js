@@ -5,7 +5,7 @@ class App3 extends React.Component {
     constructor() {
         super();
         this.state = {
-            people: [],
+            people: {},
             mouseOn: ''
         }
     }
@@ -18,25 +18,30 @@ class App3 extends React.Component {
             'https://swapi.py4e.com/api/people/11'
         ];
 
-        // fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-        //     .then(res => res.json())
-        //     .then(pok => this.setState({pokemon: pok}));
+        let test = [];
 
-        // console.log(this.state);
-        
-        const getData = async function () {
-            try {
-                const arrayOfPromises = urls.map(url => fetch(url));
-                for await (let request of arrayOfPromises) {
-                    const data = await request.json();
-                    this.setState({people: data});
-                }
-            } catch (err) {
-                console.log('dunno', err);
-            }
-        }
-        getData();
+        fetch('https://swapi.py4e.com/api/people/1')
+            .then(res => res.json())
+            .then(person => test = person);
+
+        console.log('test', test);
+        // this.setState({people: test});
+        // console.log('state', this.state);
     }
+        
+    //     const getData = async function () {
+    //         try {
+    //             const arrayOfPromises = urls.map(url => fetch(url));
+    //             for await (let request of arrayOfPromises) {
+    //                 const data = await request.json();
+    //                 this.setState({people: data});
+    //             }
+    //         } catch (err) {
+    //             console.log('dunno', err);
+    //         }
+    //     }
+    //     getData();
+    // }
 
     render() {
         const { people, mouseOn } = this.state;
